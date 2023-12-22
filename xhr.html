@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>XMLHttpRequest</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="./plugin/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +14,9 @@
     <div class="title"></div>
     <h4></h4>
     <ul></ul>
-
+    
+    <script src="./plugin/js/bootstrap.js"></script>
+    <script src="./plugin/js/jquery.js"></script>
 </body>
 </html>
 <script>
@@ -26,14 +29,31 @@
     ********************************************************/
 
     //宣告一個XMLHttpRequest物件
-
+    let xhr = new XMLHttpRequest;
 
     //建立請求的各項設定及實質內容
+    xhr.open('GET', 'https://kktix.com/events.json');
 
-
+    xhr.responseType = 'json';
     //建立得到回應時的各項設定及行為
+    xhr.onload = () => {
+        let type = xhr.getResponseHeader('Content-Type');
+        let stasus = xhr.status;
+        let response = xhr.response;
 
+        let events = response.entry;
+        // console.log(events);
+
+        events.forEach(event => {
+            $("ul").append(`<li class=''>
+                            ${event.title}
+                            ${event.summary}
+                            ${event.content}
+                            </li>`);
+        });
+    }
 
     //送出請求
+    xhr.send();
 
     </script>

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>學生資料管理系統</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="../plugin/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <!---匯入要使用的函式庫--->
 
@@ -15,6 +16,8 @@
   <h1 class="header">學生資料管理系統</h1>
 
   
+  <script src="../plugin/js/bootstrap.js"></script>
+  <script src="../plugin/js/jquery.js"></script>
 </body>
 </html>
 <script>
@@ -33,9 +36,13 @@ function create(){
 }
 
 //查詢資料的函式
-function query(){
+function queryAll(){
+  $.get('./api/query.php?do=searchAll', data => {
+    console.log(data);
 
+  });
 }
+queryAll();
 
 //編輯資料的函式
 function update(){
